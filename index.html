@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+    <title>Lost At Night</title>
+
+    <!-- Encode special characters -->
+    <meta charset="utf-8">
+
+    <!-- Control the page dimension: responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Description and author information -->
+    <meta name="description" content="Graphical User Interface for Lost At Night application">
+    <meta name="keywords" content="HTML,CSS,JavaScript">
+    <meta name="author" content="Nico Sava">
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500i,600,600i,700,700i,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600i,700,900" rel="stylesheet">
+
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="images/favicon-96x96.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <!-- Font-awesome -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- JS Internas -->
+    <script src="js/linterna.js"></script>
+
+    <!-- JS Externas -->
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src='http://openlayers.org/en/v3.16.0/build/ol.js'></script>
+
+  </head>
+
+  <body onLoad="initGesture(); initMap(); initMapVIIRS();">
+
+      <!-- Header -->
+
+      <header class="header" id="HOME">
+          <div class="header-overlay">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <!-- Logo -->
+                          <div class="logo text-center">
+                              <img src="images/crowdcrafting-logo-180.png" alt="logo">
+
+                          </div>
+                      </div>
+                  </div>
+
+                <!-- Botones arriba -->
+                <!--div class="row">
+                    <div class="col-md-12">
+                      <button type="button" class="btn btn-default proyecto-btn">Crea tu proyecto</button>
+                      <button type="button" class="btn btn-default sesion-btn">Iniciar Sesión</button>
+                    </div>
+                </div-->
+              </div>
+          </div>
+      </header>
+
+      <!-- Work-Space -->
+      <section>
+
+        <div class="maps-wrapper">
+
+          <div class="row">
+
+            <!-- col-md- offset-1 anade una columna virtual a la izquierda para centrar el contenedor -->
+            <div class="col-md-8 col-md-offset-2">
+
+              <!--div class="map-responsive" style="border: 1px solid purple"-->
+              <div id="iframe-container" class="iframe-containers">
+
+                <div id="map-google" class="mapa-google"></div>
+                <div id="map-viirs" class="mapa-viirs"></div>
+                <!--div id="drag-3" class="resize-drag" style="border: 1px solid yellow"></div-->
+
+                <div id="container-gestos" class="container-gesture">
+                  <div id="plateContainer" class="plateContainer">
+                    <!--canvas id="plateCanvas" width="400" height="400" class="plate"></canvas-->
+                    <div id="drap" class="plate"></div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Botones -->
+              <div id="boton" class="btns-container">
+                  <!-- Boton para ocultar el mapa Google -->
+                  <!--a class="btn btn-gmaps" id="btn-gmaps-pulsar" href="#" onclick="$('#map-google').toggle();">GMAP</a-->
+                  <a class="btn btn-viirs" id="btn-viirs-pulsar" href="#" onclick="$('#map-viirs').toggle();">Mapa VIIRS</a>
+                  <a class="btn btn-iss" id="btn-iss-pulsar" href="#" onclick="$('#drap').toggle();">Imagen ISS</a>
+                  <button type="button" class="btn btn-default submit-btn form_submit">Enviar</button>
+
+                  <!-- Range slider -->
+                  <form>
+                    <div class="text-slider">
+                    <label>Opacidad: </label>
+                    <output id="rangevalue">50</output>
+                    </div>
+                    <input type="range" name="bgopacity" id="bgopacity" value="50" min="0" max="100" step="1" onchange="rangevalue.value=value">
+                  </form>
+
+                  <script>
+                  /* Boton pulsado JS */
+                      $("a.btn-viirs").click(function() {
+                          $(this).toggleClass("unselected");
+                      });
+
+                      $("a.btn-iss").click(function() {
+                          $(this).toggleClass("unselected");
+                      });
+
+                  /* Range slider JS */
+                  $('#bgopacity').on('input', function (value) {
+                      $('#drap').css({
+                          opacity: $(this).val() * '.01'
+                      });
+                  });
+
+                  </script>
+
+              </div>
+
+            </div>
+
+        </div>
+
+      </div>
+
+      </section>
+
+      <!-- Footer -->
+        <footer class="footer">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                        <div id="copyright">
+                            <p>Copyright &copy; LAN 2017 <a href="#"> - Nico Sava</a></p>
+                        </div>
+                    </div>
+                    <!--div class="col-md-6">
+
+                            <div class="scroll-top">
+                                <a href="#HOME" id="scroll-to-top"><i class="fa fa-angle-up"></i></a>
+                            </div>
+                    </div-->
+
+
+                </div>
+
+            </div>
+
+
+        </footer>
+
+    <script src="js/gesture.js"></script>
+
+  </body>
+
+</html>
